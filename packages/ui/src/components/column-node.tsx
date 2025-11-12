@@ -26,19 +26,19 @@ import {
   withHOC,
 } from 'platejs/react';
 
-import { Button } from '@workspace/components/ui/button';
+import { Button } from './button';
 import {
   Popover,
   PopoverAnchor,
   PopoverContent,
-} from '@workspace/components/ui/popover';
-import { Separator } from '@workspace/components/ui/separator';
+} from './popover';
+import { Separator } from './separator';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@workspace/components/ui/tooltip';
+} from './tooltip';
 import { cn } from '@workspace/ui/lib/utils';
 
 export const ColumnElement = withHOC(

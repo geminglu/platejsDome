@@ -16,7 +16,7 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@workspace/components/ui/dropdown-menu';
+} from './dropdown-menu';
 
 import {
   ToolbarButton,

@@ -31,11 +31,11 @@ import {
   DropdownMenuContent,
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
-} from '@workspace/components/ui/dropdown-menu';
+} from './dropdown-menu';
 import {
   getBlockType,
   setBlockType,
-} from '@workspace/ui/components/editor/transforms';
+} from '../transforms';
 
 import { ToolbarButton, ToolbarMenuGroup } from './toolbar';
 

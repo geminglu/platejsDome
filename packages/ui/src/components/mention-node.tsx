@@ -15,7 +15,7 @@ import {
 } from 'platejs/react';
 
 import { cn } from '@workspace/ui/lib/utils';
-import { useMounted } from '@workspace/ui/components/use-mounted';
+import { useMounted } from '../hooks/use-mounted';
 
 import {
   InlineCombobox,

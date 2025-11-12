@@ -25,19 +25,19 @@ import {
 } from 'platejs';
 import { useEditorPlugin, useEditorRef, usePluginOption } from 'platejs/react';
 
-import { Button } from '@workspace/components/ui/button';
+import { Button } from './button';
 import {
   Popover,
   PopoverAnchor,
   PopoverContent,
   PopoverTrigger,
-} from '@workspace/components/ui/popover';
-import { commentPlugin } from '@workspace/ui/components/editor/plugins/comment-kit';
+} from './popover';
+import { commentPlugin } from '../plugins/comment-kit';
 import {
   type TDiscussion,
   discussionPlugin,
-} from '@workspace/ui/components/editor/plugins/discussion-kit';
-import { suggestionPlugin } from '@workspace/ui/components/editor/plugins/suggestion-kit';
+} from '../plugins/discussion-kit';
+import { suggestionPlugin } from '../plugins/suggestion-kit';
 
 import {
   BlockSuggestionCard,

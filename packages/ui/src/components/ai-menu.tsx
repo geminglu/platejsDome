@@ -45,20 +45,20 @@ import {
 } from 'platejs/react';
 import { type PlateEditor, useEditorRef } from 'platejs/react';
 
-import { Button } from '@workspace/components/ui/button';
+import { Button } from './button';
 import {
   Command,
   CommandGroup,
   CommandItem,
   CommandList,
-} from '@workspace/components/ui/command';
+} from './command';
 import {
   Popover,
   PopoverAnchor,
   PopoverContent,
-} from '@workspace/components/ui/popover';
+} from './popover';
 import { cn } from '@workspace/ui/lib/utils';
-import { commentPlugin } from '@workspace/ui/components/editor/plugins/comment-kit';
+import { commentPlugin } from '../plugins/comment-kit';
 
 import { AIChatEditor } from './ai-chat-editor';
 

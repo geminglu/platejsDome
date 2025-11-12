@@ -24,13 +24,13 @@ import {
 } from 'platejs';
 import { useEditorPlugin, usePluginOption } from 'platejs/react';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@workspace/components/ui/avatar';
-import { Button } from '@workspace/components/ui/button';
+import { Avatar, AvatarFallback, AvatarImage } from './avatar';
+import { Button } from './button';
 import {
   type TDiscussion,
   discussionPlugin,
-} from '@workspace/ui/components/editor/plugins/discussion-kit';
-import { suggestionPlugin } from '@workspace/ui/components/editor/plugins/suggestion-kit';
+} from '../plugins/discussion-kit';
+import { suggestionPlugin } from '../plugins/suggestion-kit';
 
 import {
   type TComment,

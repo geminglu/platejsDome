@@ -8,23 +8,23 @@ import type {
 } from '@radix-ui/react-dropdown-menu';
 
 import { useComposedRef } from '@udecode/cn';
-import debounce from 'lodash/debounce.js';
+import debounce from 'lodash/debounce';
 import { EraserIcon, PlusIcon } from 'lucide-react';
 import { useEditorRef, useEditorSelector } from 'platejs/react';
 
-import { buttonVariants } from '@workspace/components/ui/button';
+import { buttonVariants } from './button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@workspace/components/ui/dropdown-menu';
+} from './dropdown-menu';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@workspace/components/ui/tooltip';
+} from './tooltip';
 import { cn } from '@workspace/ui/lib/utils';
 
 import { ToolbarButton, ToolbarMenuGroup } from './toolbar';

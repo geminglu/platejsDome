@@ -11,9 +11,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuSeparator,
-} from '@workspace/components/ui/dropdown-menu';
-import { Separator } from '@workspace/components/ui/separator';
-import { Tooltip, TooltipTrigger } from '@workspace/components/ui/tooltip';
+} from './dropdown-menu';
+import { Separator } from './separator';
+import { Tooltip, TooltipTrigger } from './tooltip';
 import { cn } from '@workspace/ui/lib/utils';
 
 export function Toolbar({

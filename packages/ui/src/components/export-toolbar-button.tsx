@@ -16,8 +16,8 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@workspace/components/ui/dropdown-menu';
-import { BaseEditorKit } from '@workspace/ui/components/editor/editor-base-kit';
+} from './dropdown-menu';
+import { BaseEditorKit } from './editor-base-kit';
 
 import { EditorStatic } from './editor-static';
 import { ToolbarButton } from './toolbar';

@@ -31,7 +31,7 @@ import { PlateElement } from 'platejs/react';
 import {
   insertBlock,
   insertInlineElement,
-} from '@workspace/ui/components/editor/transforms';
+} from '../transforms';
 
 import {
   InlineCombobox,

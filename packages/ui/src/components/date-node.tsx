@@ -5,12 +5,12 @@ import type { PlateElementProps } from 'platejs/react';
 
 import { PlateElement, useReadOnly } from 'platejs/react';
 
-import { Calendar } from '@workspace/components/ui/calendar';
+import { Calendar } from './calendar';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from '@workspace/components/ui/popover';
+} from './popover';
 import { cn } from '@workspace/ui/lib/utils';
 
 export function DateElement(props: PlateElementProps<TDateElement>) {

@@ -41,7 +41,7 @@ import {
 } from '@/components/ui/popover';
 import { cn } from '@workspace/ui/lib/utils';
 
-import { aiChatPlugin } from './plugins/ai-kit';
+import { aiChatPlugin } from '../../../../packages/ui/src/plugins/ai-kit';
 
 interface Model {
   label: string;

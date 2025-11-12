@@ -26,15 +26,15 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from '@workspace/components/ui/alert-dialog';
+} from './alert-dialog';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@workspace/components/ui/dropdown-menu';
-import { Input } from '@workspace/components/ui/input';
+} from './dropdown-menu';
+import { Input } from './input';
 
 import {
   ToolbarSplitButton,

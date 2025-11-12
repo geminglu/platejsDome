@@ -18,12 +18,12 @@ import {
 } from 'platejs/react';
 import { useSelected } from 'platejs/react';
 
-import { Button } from '@workspace/components/ui/button';
+import { Button } from './button';
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from '@workspace/components/ui/tooltip';
+} from './tooltip';
 import { cn } from '@workspace/ui/lib/utils';
 
 const UNDRAGGABLE_KEYS = [KEYS.column, KEYS.tr, KEYS.td];

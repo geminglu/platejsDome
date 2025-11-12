@@ -35,11 +35,11 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@workspace/components/ui/dropdown-menu';
+} from './dropdown-menu';
 import {
   insertBlock,
   insertInlineElement,
-} from '@workspace/ui/components/editor/transforms';
+} from '../transforms';
 
 import { ToolbarButton, ToolbarMenuGroup } from './toolbar';
 
