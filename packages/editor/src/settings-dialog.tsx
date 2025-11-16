@@ -34,11 +34,7 @@ import {
   DialogTrigger,
 } from "./components/dialog";
 import { Input } from "./components/input";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "./components/popover";
+import { Popover, PopoverContent, PopoverTrigger } from "./components/popover";
 import { cn } from "@workspace/editor/lib/utils";
 
 import { aiChatPlugin } from "./plugins/ai-kit";

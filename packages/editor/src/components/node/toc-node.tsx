@@ -19,7 +19,7 @@ const headingItemVariants = cva(
         6: "pl-30",
       },
     },
-  }
+  },
 );
 
 export function TocElement(props: PlateElementProps) {
@@ -28,27 +28,27 @@ export function TocElement(props: PlateElementProps) {
 
   return (
     <PlateElement {...props} className="mb-1 p-0">
-        {headingList.length > 0 ? (
-          <ol contentEditable={false}>
-            {headingList.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  className={headingItemVariants({
-                    depth: item.depth as 1 | 2 | 3,
-                  })}
-                  aria-current
-                >
-                  {item.title}
-                </a>
-              </li>
-            ))}
-          </ol>
-        ) : (
-          <div className="text-sm text-gray-500">
-            Create a heading to display the table of contents.
-          </div>
-        )}
+      {headingList.length > 0 ? (
+        <ol contentEditable={false}>
+          {headingList.map((item) => (
+            <li key={item.id}>
+              <a
+                href={`#${item.id}`}
+                className={headingItemVariants({
+                  depth: item.depth as 1 | 2 | 3,
+                })}
+                aria-current
+              >
+                {item.title}
+              </a>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <div className="text-sm text-gray-500">
+          Create a heading to display the table of contents.
+        </div>
+      )}
       {props.children}
     </PlateElement>
   );

@@ -84,7 +84,7 @@ export function TaskListItemElement(props: PlateElementProps) {
           {
             "*:nth-[2]:text-muted-foreground *:nth-[2]:line-through":
               state.checked,
-          }
+          },
         )}
       >
         <div

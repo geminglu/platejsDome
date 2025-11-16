@@ -29,7 +29,6 @@ export async function POST(req: NextRequest) {
     //   system,
     //   temperature: 0.7,
     // });
-
     // return NextResponse.json(result);
   } catch (error) {
     if (error instanceof Error && error.name === "AbortError") {
