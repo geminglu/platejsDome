@@ -21,17 +21,14 @@ importers:
         specifier: ^2.5.5
         version: 2.6.0
       typescript:
-        specifier: 5.7.3
-        version: 5.7.3
+        specifier: 5.9.3
+        version: 5.9.3
 
   apps/web:
     dependencies:
-      '@workspace/ui':
+      '@workspace/editor':
         specifier: workspace:*
-        version: link:../../packages/ui
-      lucide-react:
-        specifier: ^0.475.0
-        version: 0.475.0(react@19.2.0)
+        version: link:../../packages/editor
       next:
         specifier: ^15.4.5
         version: 15.5.6(react-dom@19.2.0)(react@19.2.0)
@@ -64,48 +61,7 @@ importers:
         specifier: ^5.9.2
         version: 5.9.3
 
-  packages/eslint-config:
-    devDependencies:
-      '@next/eslint-plugin-next':
-        specifier: ^15.4.5
-        version: 15.5.6
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^8.39.0
-        version: 8.46.3(@typescript-eslint/parser@8.46.3)(eslint@9.39.1)(typescript@5.9.3)
-      '@typescript-eslint/parser':
-        specifier: ^8.39.0
-        version: 8.46.3(eslint@9.39.1)(typescript@5.9.3)
-      eslint:
-        specifier: ^9.32.0
-        version: 9.39.1
-      eslint-config-prettier:
-        specifier: ^9.1.2
-        version: 9.1.2(eslint@9.39.1)
-      eslint-plugin-only-warn:
-        specifier: ^1.1.0
-        version: 1.1.0
-      eslint-plugin-react:
-        specifier: ^7.37.5
-        version: 7.37.5(eslint@9.39.1)
-      eslint-plugin-react-hooks:
-        specifier: ^5.2.0
-        version: 5.2.0(eslint@9.39.1)
-      eslint-plugin-turbo:
-        specifier: ^2.5.5
-        version: 2.6.0(eslint@9.39.1)(turbo@2.6.0)
-      globals:
-        specifier: ^15.15.0
-        version: 15.15.0
-      typescript:
-        specifier: ^5.9.2
-        version: 5.9.3
-      typescript-eslint:
-        specifier: ^8.39.0
-        version: 8.46.3(eslint@9.39.1)(typescript@5.9.3)
-
-  packages/typescript-config: {}
-
-  packages/ui:
+  packages/editor:
     dependencies:
       '@ai-sdk/react':
         specifier: 2.0.28
@@ -177,6 +133,9 @@ importers:
         specifier: ^51.0.0
         version: 51.0.0(platejs@51.0.0)(react-dom@19.2.0)(react@19.2.0)
       '@platejs/list':
+        specifier: ^51.0.0
+        version: 51.0.0(platejs@51.0.0)(react-dom@19.2.0)(react@19.2.0)
+      '@platejs/list-classic':
         specifier: ^51.0.0
         version: 51.0.0(platejs@51.0.0)(react-dom@19.2.0)(react@19.2.0)
       '@platejs/markdown':
@@ -372,6 +331,47 @@ importers:
       typescript:
         specifier: ^5.9.2
         version: 5.9.3
+
+  packages/eslint-config:
+    devDependencies:
+      '@next/eslint-plugin-next':
+        specifier: ^15.4.5
+        version: 15.5.6
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^8.39.0
+        version: 8.46.3(@typescript-eslint/parser@8.46.3)(eslint@9.39.1)(typescript@5.9.3)
+      '@typescript-eslint/parser':
+        specifier: ^8.39.0
+        version: 8.46.3(eslint@9.39.1)(typescript@5.9.3)
+      eslint:
+        specifier: ^9.32.0
+        version: 9.39.1
+      eslint-config-prettier:
+        specifier: ^9.1.2
+        version: 9.1.2(eslint@9.39.1)
+      eslint-plugin-only-warn:
+        specifier: ^1.1.0
+        version: 1.1.0
+      eslint-plugin-react:
+        specifier: ^7.37.5
+        version: 7.37.5(eslint@9.39.1)
+      eslint-plugin-react-hooks:
+        specifier: ^5.2.0
+        version: 5.2.0(eslint@9.39.1)
+      eslint-plugin-turbo:
+        specifier: ^2.5.5
+        version: 2.6.0(eslint@9.39.1)(turbo@2.6.0)
+      globals:
+        specifier: ^15.15.0
+        version: 15.15.0
+      typescript:
+        specifier: ^5.9.2
+        version: 5.9.3
+      typescript-eslint:
+        specifier: ^8.39.0
+        version: 8.46.3(eslint@9.39.1)(typescript@5.9.3)
+
+  packages/typescript-config: {}
 
 packages:
 
@@ -1579,6 +1579,19 @@ packages:
       react-dom: '>=18.0.0'
     dependencies:
       '@platejs/floating': 51.0.0(platejs@51.0.0)(react-dom@19.2.0)(react@19.2.0)
+      platejs: 51.0.0(@types/react@19.2.2)(react-dom@19.2.0)(react@19.2.0)(scheduler@0.27.0)
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
+    dev: false
+
+  /@platejs/list-classic@51.0.0(platejs@51.0.0)(react-dom@19.2.0)(react@19.2.0):
+    resolution: {integrity: sha512-XhWce89IkRwFvmrbnFF5R0ftL8qF9cW8zTTIkugrfpeViG1IjeqNIN0cIqJB8EdikZZpIxjsYEYxNAjDSc1ymQ==}
+    peerDependencies:
+      platejs: '>=51.0.0'
+      react: '>=18.0.0'
+      react-dom: '>=18.0.0'
+    dependencies:
+      lodash: 4.17.21
       platejs: 51.0.0(@types/react@19.2.2)(react-dom@19.2.0)(react@19.2.0)(scheduler@0.27.0)
       react: 19.2.0
       react-dom: 19.2.0(react@19.2.0)
@@ -4898,6 +4911,7 @@ packages:
   /detect-libc@2.1.2:
     resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
     engines: {node: '>=8'}
+    requiresBuild: true
 
   /detect-node-es@1.1.0:
     resolution: {integrity: sha512-ypdmJU/TbBby2Dxibuv7ZLW3Bs1QEmM7nHjEANfohJLvE0XVujisn1qPJcZxg+qDucsr+bP6fLD1rPS3AhJ7EQ==}
@@ -8790,6 +8804,7 @@ packages:
     resolution: {integrity: sha512-SdsKMrI9TdgjdweUSR9MweHA4EJ8YxHn8DFaDisvhVlUOe4BF1tLD7GAj0lIqWVl+dPb/rExr0Btby5loQm20Q==}
     engines: {node: '>=10'}
     hasBin: true
+    requiresBuild: true
 
   /sentence-case@2.1.1:
     resolution: {integrity: sha512-ENl7cYHaK/Ktwk5OTD+aDbQ3uC8IByu/6Bkg+HDv8Mm+XnBnppVNalcfJTNsp1ibstKh030/JKQQWglDvtKwEQ==}
@@ -9511,12 +9526,6 @@ packages:
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /typescript@5.7.3:
-    resolution: {integrity: sha512-84MVSjMEHP+FQRPy3pX9sTVV/INIex71s9TL2Gm5FG/WG1SqXeKyZ0k7/blY/4FdOzI12CBy1vGc4og/eus0fw==}
-    engines: {node: '>=14.17'}
-    hasBin: true
     dev: true
 
   /typescript@5.9.3:

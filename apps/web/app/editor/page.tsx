@@ -1,6 +1,6 @@
 "use client";
 
-import { PlateEditor } from "@workspace/ui/components/plate-editor";
+import { PlateEditor } from "@workspace/editor/components/plate-editor";
 import { value } from "./valueDome";
 
 export default function Page() {
@@ -9,7 +9,4 @@ export default function Page() {
       <PlateEditor value={value} />
     </div>
   );
-}
-function hello() {
-  console.info("Code blocks are supported!");
 }

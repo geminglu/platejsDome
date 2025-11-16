@@ -1,5 +1,47 @@
 export const value = [
   {
+    type: "ul",
+    children: [
+      {
+        type: "li",
+        children: [
+          {
+            text: "Try clicking the links below to navigate between pages and websites.",
+          },
+        ],
+      },
+      {
+        type: "li",
+        children: [
+          {
+            text: "Ghost text remains visible as long as you continue typing the same letters as the suggestion.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    type: "ol",
+    children: [
+      {
+        type: "li",
+        children: [
+          {
+            text: "Try clicking the links below to navigate between pages and websites.",
+          },
+        ],
+      },
+      {
+        type: "li",
+        children: [
+          {
+            text: "Ghost text remains visible as long as you continue typing the same letters as the suggestion.",
+          },
+        ],
+      },
+    ],
+  },
+  {
     type: "h2",
     children: [
       {
