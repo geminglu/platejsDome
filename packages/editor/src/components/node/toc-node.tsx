@@ -1,10 +1,11 @@
 "use client";
 
+import { useCallback } from "react";
 import type { PlateElementProps } from "platejs/react";
-
+import { BlockSelectionPlugin } from "@platejs/selection/react";
 import { useTocElementState } from "@platejs/toc/react";
 import { cva } from "class-variance-authority";
-import { PlateElement } from "platejs/react";
+import { PlateElement, useEditorRef } from "platejs/react";
 
 const headingItemVariants = cva(
   "block h-auto w-full cursor-pointer truncate rounded-none px-0.5 py-1.5 text-left font-medium text-muted-foreground underline decoration-[0.5px] underline-offset-4 hover:bg-accent hover:text-muted-foreground",
@@ -19,12 +20,23 @@ const headingItemVariants = cva(
         6: "pl-30",
       },
     },
-  },
+  }
 );
 
 export function TocElement(props: PlateElementProps) {
   const state = useTocElementState();
   const { headingList } = state;
+  const editor = useEditorRef();
+
+  const handleLinkClick = useCallback(
+    (headingId: string) => {
+      requestIdleCallback(() => {
+        editor.getApi(BlockSelectionPlugin).blockSelection.set(headingId);
+        editor.getApi(BlockSelectionPlugin).blockSelection.focus();
+      });
+    },
+    [editor]
+  );
 
   return (
     <PlateElement {...props} className="mb-1 p-0">
@@ -38,6 +50,7 @@ export function TocElement(props: PlateElementProps) {
                   depth: item.depth as 1 | 2 | 3,
                 })}
                 aria-current
+                onClick={(e) => handleLinkClick(item.id)}
               >
                 {item.title}
               </a>
