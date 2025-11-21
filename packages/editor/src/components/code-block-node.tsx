@@ -24,9 +24,55 @@ import {
 } from "./command";
 import { Popover, PopoverContent, PopoverTrigger } from "./popover";
 import { cn } from "@workspace/editor/lib/utils";
+import { MermaidElement } from "./node/mermaid-node";
+import type { MyMermaidElement } from "../plate-types";
 
 export function CodeBlockElement(props: PlateElementProps<TCodeBlockElement>) {
   const { editor, element } = props;
+
+  console.log(333333, element.lang);
+
+  // 如果语言是 mermaid，转换为 mermaid 节点
+  React.useEffect(() => {
+    if (element.lang === "mermaid") {
+      const code = NodeApi.string(element);
+      const path = editor.api.findPath(element);
+
+      console.log("code", code);
+
+      if (path) {
+        // editor.tf.setNodes<MyMermaidElement>(
+        //   {
+        //     type: "mermaid",
+        //     code: code,
+        //     children: [{ text: "" }],
+        //   },
+        //   { at: path },
+        // );
+      }
+    }
+  }, [element.lang, element, editor]);
+
+  // 如果是 mermaid 语言，渲染为 mermaid 节点
+  // if (element.lang === "mermaid") {
+  //   const code = NodeApi.string(element);
+  //   return (
+  //     <MermaidElement
+  //       {...(props as any)}
+  //       element={
+  //         {
+  //           type: "mermaid",
+  //           code: code,
+  //           children: [{ text: "" }],
+  //         } as MyMermaidElement
+  //       }
+  //     />
+  //   );
+  // }
+
+  // if (element.lang === "mermaid") {
+  //   return <MermaidElement {...props} />;
+  // }
 
   return (
     <PlateElement
@@ -34,9 +80,13 @@ export function CodeBlockElement(props: PlateElementProps<TCodeBlockElement>) {
       {...props}
     >
       <div className="relative rounded-md bg-muted/50">
-        <pre className="overflow-x-auto p-8 pr-4 font-mono text-sm leading-[normal] [tab-size:2] print:break-inside-avoid">
-          <code>{props.children}</code>
-        </pre>
+        <div className="flex flex-col">
+          <pre className="overflow-x-auto p-8 pr-4 font-mono text-sm leading-[normal] [tab-size:2] print:break-inside-avoid">
+            <code>{props.children}</code>
+          </pre>
+
+          {element.lang === "mermaid" && <MermaidElement {...props} />}
+        </div>
 
         <div
           className="absolute top-1 right-1 z-10 flex gap-0.5 select-none"
@@ -81,9 +131,9 @@ function CodeBlockCombobox() {
       languages.filter(
         (language) =>
           !searchValue ||
-          language.label.toLowerCase().includes(searchValue.toLowerCase()),
+          language.label.toLowerCase().includes(searchValue.toLowerCase())
       ),
-    [searchValue],
+    [searchValue]
   );
 
   if (readOnly) return null;
@@ -120,23 +170,19 @@ function CodeBlockCombobox() {
               {items.map((language) => (
                 <CommandItem
                   key={language.label}
-                  className="cursor-pointer"
+                  className="cursor-pointer flex items-center justify-between"
                   value={language.value}
                   onSelect={(value) => {
                     editor.tf.setNodes<TCodeBlockElement>(
                       { lang: value },
-                      { at: element },
+                      { at: element }
                     );
                     setSearchValue(value);
                     setOpen(false);
                   }}
                 >
-                  <Check
-                    className={cn(
-                      value === language.value ? "opacity-100" : "opacity-0",
-                    )}
-                  />
                   {language.label}
+                  {value === language.value && <Check />}
                 </CommandItem>
               ))}
             </CommandGroup>
@@ -166,7 +212,7 @@ function CopyButton({
     <Button
       onClick={() => {
         void navigator.clipboard.writeText(
-          typeof value === "function" ? value() : value,
+          typeof value === "function" ? value() : value
         );
         setHasCopied(true);
       }}
@@ -192,7 +238,7 @@ export function CodeSyntaxLeaf(props: PlateLeafProps<TCodeSyntaxLeaf>) {
   return <PlateLeaf className={tokenClassName} {...props} />;
 }
 
-const languages: { label: string; value: string }[] = [
+const languages = [
   { label: "Auto", value: "auto" },
   { label: "Plain Text", value: "plaintext" },
   { label: "ABAP", value: "abap" },
@@ -282,4 +328,4 @@ const languages: { label: string; value: string }[] = [
   { label: "WebAssembly", value: "wasm" },
   { label: "XML", value: "xml" },
   { label: "YAML", value: "yaml" },
-];
+] as const;

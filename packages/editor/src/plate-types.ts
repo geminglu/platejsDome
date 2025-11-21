@@ -141,6 +141,12 @@ export interface MyToggleElement extends MyTextBlockElement {
   type: typeof KEYS.toggle;
 }
 
+export interface MyMermaidElement extends MyBlockElement {
+  type: "mermaid";
+  code: string;
+  children: [EmptyText];
+}
+
 export interface RichText extends TBasicMarks, TCommentText, TFontMarks, TText {
   kbd?: boolean;
 }
@@ -157,6 +163,7 @@ export type MyValue = (
   | MyHrElement
   | MyImageElement
   | MyMediaEmbedElement
+  | MyMermaidElement
   | MyParagraphElement
   | MyTableElement
   | MyToggleElement

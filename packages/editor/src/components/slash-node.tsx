@@ -24,6 +24,7 @@ import {
   Square,
   Table,
   TableOfContentsIcon,
+  WorkflowIcon,
 } from "lucide-react";
 import { type TComboboxInputElement, KEYS } from "platejs";
 import { PlateElement } from "platejs/react";
@@ -168,6 +169,13 @@ const groups: Group[] = [
         icon: <RadicalIcon />,
         label: "Equation",
         value: KEYS.equation,
+      },
+      {
+        focusEditor: false,
+        icon: <WorkflowIcon />,
+        keywords: ["diagram", "flowchart", "graph"],
+        label: "Mermaid",
+        value: "mermaid",
       },
       {
         icon: <PenToolIcon />,

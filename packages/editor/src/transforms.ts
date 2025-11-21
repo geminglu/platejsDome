@@ -67,6 +67,16 @@ const insertBlockMap: Record<
     editor.getTransforms(TablePlugin).insert.table({}, { select: true }),
   [KEYS.toc]: (editor) => insertToc(editor, { select: true }),
   [KEYS.video]: (editor) => insertVideoPlaceholder(editor, { select: true }),
+  ["mermaid"]: (editor) => {
+    editor.tf.insertNodes(
+      {
+        type: "mermaid",
+        code: "",
+        children: [{ text: "" }],
+      },
+      { select: true },
+    );
+  },
 };
 
 const insertInlineMap: Record<
