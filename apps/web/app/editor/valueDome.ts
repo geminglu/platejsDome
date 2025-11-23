@@ -21,6 +21,70 @@ export const value = [
     lang: "mermaid",
   },
   {
+    children: [
+      {
+        children: [
+          {
+            text: `flowchart TD
+    A[Loading URL failed. We can try to figure out why.] -->|Decode JSON| B(Please check the console to see the JSON and error details.)
+    B --> C{Is the JSON correct?}
+    C -->|Yes| D(Please Click here to Raise an issue in github.<br/>Including the broken link in the issue <br/> will speed up the fix.)
+    C -->|No| E{Did someone <br/>send you this link?}
+    E -->|Yes| F[Ask them to send <br/>you the complete link]
+    E -->|No| G{Did you copy <br/> the complete URL?}
+    G --> |Yes| D
+    G --> |"No :("| H(Try using the Timeline tab in History <br/>from same browser you used to create the diagram.)
+    click D href "https://github.com/mermaid-js/mermaid-live-editor/issues/new?assignees=&labels=bug&template=bug_report.md&title=Broken%20link" "Raise issue"`,
+          },
+        ],
+        type: "code_line",
+        id: "00yZlR811atp",
+      },
+    ],
+    type: "code_block",
+    id: "0NTVik2YG3W",
+    lang: "mermaid",
+  },
+  {
+    children: [
+      {
+        children: [
+          {
+            text: `---
+config:
+  kanban:
+    ticketBaseUrl: 'https://github.com/mermaid-js/mermaid/issues/#TICKET#'
+---
+kanban
+  Todo
+    [Create Documentation]
+    docs[Create Blog about the new diagram]
+  [In progress]
+    id6[Create renderer so that it works in all cases. We also add some extra text here for testing purposes. And some more just for the extra flare.]
+  id9[Ready for deploy]
+    id8[Design grammar]@{ assigned: 'knsv' }
+  id10[Ready for test]
+    id4[Create parsing tests]@{ ticket: 2038, assigned: 'K.Sveidqvist', priority: 'High' }
+    id66[last item]@{ priority: 'Very Low', assigned: 'knsv' }
+  id11[Done]
+    id5[define getData]
+    id2[Title of diagram is more than 100 chars when user duplicates diagram with 100 char]@{ ticket: 2036, priority: 'Very High'}
+    id3[Update DB function]@{ ticket: 2037, assigned: knsv, priority: 'High' }
+
+  id12[Can't reproduce]
+    id3[Weird flickering in Firefox]
+`,
+          },
+        ],
+        type: "code_line",
+        id: "00yZlR811atp",
+      },
+    ],
+    type: "code_block",
+    id: "0NTVik2YG3W",
+    lang: "mermaid",
+  },
+  {
     type: "ul",
     children: [
       {

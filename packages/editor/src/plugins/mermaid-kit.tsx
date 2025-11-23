@@ -2,7 +2,7 @@
 
 import { createPlatePlugin } from "platejs/react";
 
-import { MermaidElement } from "../components/node/mermaid-node";
+import { MermaidElement } from "../components/mermaid";
 
 export const MermaidKit = [
   createPlatePlugin({

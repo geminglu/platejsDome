@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-
 import { formatCodeBlock, isLangSupported } from "@platejs/code-block";
 import { BracesIcon, Check, CheckIcon, CopyIcon } from "lucide-react";
 import { type TCodeBlockElement, type TCodeSyntaxLeaf, NodeApi } from "platejs";
@@ -13,7 +12,7 @@ import {
 } from "platejs/react";
 import { useEditorRef, useElement, useReadOnly } from "platejs/react";
 
-import { Button } from "./button";
+import { Button } from "../button";
 import {
   Command,
   CommandEmpty,
@@ -21,58 +20,12 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "./command";
-import { Popover, PopoverContent, PopoverTrigger } from "./popover";
-import { cn } from "@workspace/editor/lib/utils";
-import { MermaidElement } from "./node/mermaid-node";
-import type { MyMermaidElement } from "../plate-types";
+} from "../command";
+import { Popover, PopoverContent, PopoverTrigger } from "../popover";
+import { MermaidElement } from "../mermaid";
 
 export function CodeBlockElement(props: PlateElementProps<TCodeBlockElement>) {
   const { editor, element } = props;
-
-  console.log(333333, element.lang);
-
-  // 如果语言是 mermaid，转换为 mermaid 节点
-  React.useEffect(() => {
-    if (element.lang === "mermaid") {
-      const code = NodeApi.string(element);
-      const path = editor.api.findPath(element);
-
-      console.log("code", code);
-
-      if (path) {
-        // editor.tf.setNodes<MyMermaidElement>(
-        //   {
-        //     type: "mermaid",
-        //     code: code,
-        //     children: [{ text: "" }],
-        //   },
-        //   { at: path },
-        // );
-      }
-    }
-  }, [element.lang, element, editor]);
-
-  // 如果是 mermaid 语言，渲染为 mermaid 节点
-  // if (element.lang === "mermaid") {
-  //   const code = NodeApi.string(element);
-  //   return (
-  //     <MermaidElement
-  //       {...(props as any)}
-  //       element={
-  //         {
-  //           type: "mermaid",
-  //           code: code,
-  //           children: [{ text: "" }],
-  //         } as MyMermaidElement
-  //       }
-  //     />
-  //   );
-  // }
-
-  // if (element.lang === "mermaid") {
-  //   return <MermaidElement {...props} />;
-  // }
 
   return (
     <PlateElement
@@ -81,11 +34,17 @@ export function CodeBlockElement(props: PlateElementProps<TCodeBlockElement>) {
     >
       <div className="relative rounded-md bg-muted/50">
         <div className="flex flex-col">
-          <pre className="overflow-x-auto p-8 pr-4 font-mono text-sm leading-[normal] [tab-size:2] print:break-inside-avoid">
-            <code>{props.children}</code>
+          <pre className="overflow-x-auto p-6 font-mono text-sm leading-[normal] [tab-size:2] print:break-inside-avoid">
+            <code className="block w-fit min-w-full">{props.children}</code>
           </pre>
 
-          {element.lang === "mermaid" && <MermaidElement {...props} />}
+          {element.lang === "mermaid" && (
+            <MermaidElement
+              code={props.element.children
+                .map((line) => NodeApi.string(line))
+                .join("\n")}
+            />
+          )}
         </div>
 
         <div
@@ -100,7 +59,7 @@ export function CodeBlockElement(props: PlateElementProps<TCodeBlockElement>) {
               onClick={() => formatCodeBlock(editor, { element })}
               title="Format code"
             >
-              <BracesIcon className="!size-3.5 text-muted-foreground" />
+              <BracesIcon className="size-3.5! text-muted-foreground" />
             </Button>
           )}
 
@@ -110,7 +69,11 @@ export function CodeBlockElement(props: PlateElementProps<TCodeBlockElement>) {
             size="icon"
             variant="ghost"
             className="size-6 gap-1 text-xs text-muted-foreground"
-            value={() => NodeApi.string(element)}
+            value={() =>
+              props.element.children
+                .map((line) => NodeApi.string(line))
+                .join("\n")
+            }
           />
         </div>
       </div>
@@ -220,9 +183,9 @@ function CopyButton({
     >
       <span className="sr-only">Copy</span>
       {hasCopied ? (
-        <CheckIcon className="!size-3" />
+        <CheckIcon className="size-3!" />
       ) : (
-        <CopyIcon className="!size-3" />
+        <CopyIcon className="size-3!" />
       )}
     </Button>
   );
