@@ -20,7 +20,7 @@ const headingItemVariants = cva(
         6: "pl-30",
       },
     },
-  }
+  },
 );
 
 export function TocElement(props: PlateElementProps) {
@@ -35,7 +35,7 @@ export function TocElement(props: PlateElementProps) {
         editor.getApi(BlockSelectionPlugin).blockSelection.focus();
       });
     },
-    [editor]
+    [editor],
   );
 
   return (

@@ -23,7 +23,9 @@ export function VideoElementStatic(
             src={url}
             controls
           />
-          {caption && <figcaption>{NodeApi.string(caption[0])}</figcaption>}
+          {caption && (
+            <figcaption>{caption[0] && NodeApi.string(caption[0])}</figcaption>
+          )}
         </figure>
       </div>
       {props.children}

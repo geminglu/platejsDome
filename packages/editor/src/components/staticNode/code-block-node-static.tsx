@@ -7,7 +7,7 @@ import {
 } from "platejs/static";
 
 export function CodeBlockElementStatic(
-  props: SlateElementProps<TCodeBlockElement>
+  props: SlateElementProps<TCodeBlockElement>,
 ) {
   return (
     <SlateElement
@@ -15,9 +15,12 @@ export function CodeBlockElementStatic(
       {...props}
     >
       <div className="relative rounded-md bg-muted/50">
-        <pre className="overflow-x-auto p-8 pr-4 font-mono text-sm leading-[normal] [tab-size:2] print:break-inside-avoid">
-          <code>{props.children}</code>
+        <pre className="overflow-x-auto p-6 font-mono text-sm leading-[normal] [tab-size:2] print:break-inside-avoid">
+          <code className="block w-fit min-w-full">{props.children}</code>
         </pre>
+        <span className="absolute top-1 right-1 text-xs text-muted-foreground">
+          {props.element.lang}
+        </span>
       </div>
     </SlateElement>
   );

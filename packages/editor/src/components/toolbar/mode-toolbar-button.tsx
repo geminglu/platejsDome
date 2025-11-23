@@ -27,13 +27,13 @@ export function ModeToolbarButton(props: DropdownMenuProps) {
 
   const isSuggesting = usePluginOption(SuggestionPlugin, "isSuggesting");
 
-  let value = "editing";
+  let value: "editing" | "suggestion" | "viewing" = "editing";
 
   if (readOnly) value = "viewing";
 
   if (isSuggesting) value = "suggestion";
 
-  const item: Record<string, { icon: React.ReactNode; label: string }> = {
+  const item: Record<typeof value, { icon: React.ReactNode; label: string }> = {
     editing: {
       icon: <PenIcon />,
       label: "Editing",

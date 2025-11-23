@@ -13,7 +13,10 @@ import {
   EditorKit,
   type MyEditor,
 } from "@workspace/editor/components/editor-kit";
-import { EditorContainer, EditorView } from "@workspace/editor/components/editor";
+import {
+  EditorContainer,
+  EditorView,
+} from "@workspace/editor/components/editor";
 
 export type PlateEditorProps = {
   placeholder?: string;

@@ -42,7 +42,7 @@ export interface ResolvedSuggestion extends TResolvedSuggestion {
 
 const BLOCK_SUGGESTION = "__block__";
 
-const TYPE_TEXT_MAP: Record<string, (node?: TElement) => string> = {
+const TYPE_TEXT_MAP: Partial<Record<string, (node?: TElement) => string>> = {
   [KEYS.audio]: () => "Audio",
   [KEYS.blockquote]: () => "Blockquote",
   [KEYS.callout]: () => "Callout",
@@ -59,7 +59,7 @@ const TYPE_TEXT_MAP: Record<string, (node?: TElement) => string> = {
   [KEYS.hr]: () => "Horizontal Rule",
   [KEYS.img]: () => "Image",
   [KEYS.mediaEmbed]: () => "Media",
-  [KEYS.p]: (node) => {
+  [KEYS.p]: (node): string => {
     if (node?.[KEYS.listType] === KEYS.listTodo) return "Todo List";
     if (node?.[KEYS.listType] === KEYS.ol) return "Ordered List";
     if (node?.[KEYS.listType] === KEYS.ul) return "List";
@@ -391,21 +391,25 @@ export const useResolveSuggestion = (
             : undefined;
 
           if (lineBreakData?.id !== keyId2SuggestionId(id)) return;
+          const typeText = TYPE_TEXT_MAP[node.type]?.(node) || "";
           if (lineBreakData.type === "insert") {
             newText += lineBreakData.isLineBreak
               ? BLOCK_SUGGESTION
-              : BLOCK_SUGGESTION + TYPE_TEXT_MAP[node.type](node);
+              : BLOCK_SUGGESTION + typeText;
           } else if (lineBreakData.type === "remove") {
             text += lineBreakData.isLineBreak
               ? BLOCK_SUGGESTION
-              : BLOCK_SUGGESTION + TYPE_TEXT_MAP[node.type](node);
+              : BLOCK_SUGGESTION + typeText;
           }
         }
       });
 
       if (entries.length === 0) return;
 
-      const nodeData = api.suggestion.suggestionData(entries[0][0]);
+      const firstEntry = entries[0];
+      if (!firstEntry) return;
+
+      const nodeData = api.suggestion.suggestionData(firstEntry[0]);
 
       if (!nodeData) return;
 

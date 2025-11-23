@@ -10,8 +10,10 @@ import {
   CodeLineElementStatic,
   CodeSyntaxLeafStatic,
 } from "../../components/staticNode/code-block-node-static";
+import { customLowlight } from "@workspace/editor/lib/customLowlight";
 
 const lowlight = createLowlight(all);
+customLowlight(lowlight.register);
 
 export const BaseCodeBlockKit = [
   BaseCodeBlockPlugin.configure({

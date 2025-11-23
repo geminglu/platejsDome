@@ -325,7 +325,7 @@ Start writing a new paragraph AFTER <Document> ONLY ONE SENTENCE`
     shortcut: "Escape",
     value: "discard",
     onSelect: ({ editor, input }) => {
-      editor.getTransforms(AIPlugin).ai.undo();
+      editor?.getTransforms(AIPlugin)?.ai?.undo();
       editor.getApi(AIChatPlugin).aiChat.hide();
     },
   },
@@ -573,8 +573,10 @@ export const AIMenuItems = ({
   }, [menuState]);
 
   React.useEffect(() => {
-    if (menuGroups.length > 0 && menuGroups[0].items.length > 0) {
-      setValue(menuGroups[0].items[0].value);
+    const firstGroup = menuGroups[0];
+    const firstItem = firstGroup?.items[0];
+    if (firstItem?.value) {
+      setValue(firstItem.value);
     }
   }, [menuGroups, setValue]);
 

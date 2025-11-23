@@ -18,8 +18,13 @@ import { useFilePicker } from "use-file-picker";
 import { cn } from "@workspace/editor/lib/utils";
 import { useUploadFile } from "../hooks/use-upload-file";
 
+type MediaConfigKey = keyof Pick<
+  typeof KEYS,
+  "audio" | "file" | "img" | "video"
+>;
+
 const CONTENT: Record<
-  string,
+  MediaConfigKey,
   {
     accept: string[];
     content: React.ReactNode;
@@ -50,7 +55,11 @@ const CONTENT: Record<
 
 export const PlaceholderElement = withHOC(
   PlaceholderProvider,
-  function PlaceholderElement(props: PlateElementProps<TPlaceholderElement>) {
+  function PlaceholderElement(
+    props: PlateElementProps<
+      TPlaceholderElement & { mediaType: MediaConfigKey }
+    >,
+  ) {
     const { editor, element } = props;
 
     const { api } = useEditorPlugin(PlaceholderPlugin);

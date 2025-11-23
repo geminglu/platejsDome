@@ -1,7 +1,6 @@
 "use client";
 
 import { LinkPlugin } from "@platejs/link/react";
-
 import { LinkElement } from "../components/node/link-node";
 import { LinkFloatingToolbar } from "../components/toolbar/link-toolbar";
 

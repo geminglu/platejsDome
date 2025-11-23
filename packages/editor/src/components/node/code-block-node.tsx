@@ -94,9 +94,12 @@ function CodeBlockCombobox() {
       languages.filter(
         (language) =>
           !searchValue ||
-          language.label.toLowerCase().includes(searchValue.toLowerCase())
+          language.label.toLowerCase().includes(searchValue.toLowerCase()) ||
+          (language.aliases || []).some((alias) =>
+            alias.toLowerCase().includes(searchValue.toLowerCase()),
+          ),
       ),
-    [searchValue]
+    [searchValue],
   );
 
   if (readOnly) return null;
@@ -138,7 +141,7 @@ function CodeBlockCombobox() {
                   onSelect={(value) => {
                     editor.tf.setNodes<TCodeBlockElement>(
                       { lang: value },
-                      { at: element }
+                      { at: element },
                     );
                     setSearchValue(value);
                     setOpen(false);
@@ -175,7 +178,7 @@ function CopyButton({
     <Button
       onClick={() => {
         void navigator.clipboard.writeText(
-          typeof value === "function" ? value() : value
+          typeof value === "function" ? value() : value,
         );
         setHasCopied(true);
       }}
@@ -202,7 +205,7 @@ export function CodeSyntaxLeaf(props: PlateLeafProps<TCodeSyntaxLeaf>) {
 }
 
 const languages = [
-  { label: "Auto", value: "auto" },
+  { label: "Auto", value: "auto", aliases: [] },
   { label: "Plain Text", value: "plaintext" },
   { label: "ABAP", value: "abap" },
   { label: "Agda", value: "agda" },
@@ -237,10 +240,13 @@ const languages = [
   { label: "Groovy", value: "groovy" },
   { label: "Haskell", value: "haskell" },
   { label: "HCL", value: "hcl" },
-  { label: "HTML", value: "html" },
+  { label: "HTML", value: "html", aliases: ["html5", "h5"] },
   { label: "Idris", value: "idris" },
   { label: "Java", value: "java" },
-  { label: "JavaScript", value: "javascript" },
+  { label: "JavaScript", value: "javascript", aliases: ["js"] },
+  { label: "TypeScript", value: "typescript", aliases: ["ts"] },
+  { label: "React", value: "react", aliases: ["reactjs"] },
+  { label: "Vue", value: "vue", aliases: ["vuejs"] },
   { label: "JSON", value: "json" },
   { label: "Julia", value: "julia" },
   { label: "Kotlin", value: "kotlin" },
@@ -251,11 +257,11 @@ const languages = [
   { label: "LLVM IR", value: "llvm" },
   { label: "Lua", value: "lua" },
   { label: "Makefile", value: "makefile" },
-  { label: "Markdown", value: "markdown" },
+  { label: "Markdown", value: "markdown", aliases: ["md"] },
   { label: "Markup", value: "markup" },
   { label: "MATLAB", value: "matlab" },
   { label: "Mathematica", value: "mathematica" },
-  { label: "Mermaid", value: "mermaid" },
+  { label: "Mermaid", value: "mermaid", aliases: ["mmd"] },
   { label: "Nix", value: "nix" },
   { label: "Notion Formula", value: "notion" },
   { label: "Objective-C", value: "objectivec" },
@@ -283,7 +289,6 @@ const languages = [
   { label: "SQL", value: "sql" },
   { label: "Swift", value: "swift" },
   { label: "TOML", value: "toml" },
-  { label: "TypeScript", value: "typescript" },
   { label: "VB.Net", value: "vbnet" },
   { label: "Verilog", value: "verilog" },
   { label: "VHDL", value: "vhdl" },
@@ -291,4 +296,5 @@ const languages = [
   { label: "WebAssembly", value: "wasm" },
   { label: "XML", value: "xml" },
   { label: "YAML", value: "yaml" },
-] as const;
+  { label: "Nginx", value: "nginx" },
+];

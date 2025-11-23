@@ -42,8 +42,13 @@ import {
   ToolbarSplitButtonSecondary,
 } from "./toolbar/toolbar";
 
+type MediaConfigKey = keyof Pick<
+  typeof KEYS,
+  "audio" | "file" | "img" | "video"
+>;
+
 const MEDIA_CONFIG: Record<
-  string,
+  MediaConfigKey,
   {
     accept: string[];
     icon: React.ReactNode;
@@ -80,7 +85,7 @@ const MEDIA_CONFIG: Record<
 export function MediaToolbarButton({
   nodeType,
   ...props
-}: DropdownMenuProps & { nodeType: string }) {
+}: DropdownMenuProps & { nodeType: MediaConfigKey }) {
   const currentConfig = MEDIA_CONFIG[nodeType];
 
   const editor = useEditorRef();
@@ -88,7 +93,7 @@ export function MediaToolbarButton({
   const [dialogOpen, setDialogOpen] = React.useState(false);
 
   const { openFilePicker } = useFilePicker({
-    accept: currentConfig.accept,
+    accept: currentConfig?.accept || [],
     multiple: true,
     onFilesSelected: ({ plainFiles: updatedFiles }) => {
       editor.getTransforms(PlaceholderPlugin).insert.media(updatedFiles);
@@ -110,7 +115,7 @@ export function MediaToolbarButton({
         pressed={open}
       >
         <ToolbarSplitButtonPrimary>
-          {currentConfig.icon}
+          {currentConfig?.icon}
         </ToolbarSplitButtonPrimary>
 
         <DropdownMenu
@@ -130,7 +135,7 @@ export function MediaToolbarButton({
           >
             <DropdownMenuGroup>
               <DropdownMenuItem onSelect={() => openFilePicker()}>
-                {currentConfig.icon}
+                {currentConfig?.icon}
                 Upload from computer
               </DropdownMenuItem>
               <DropdownMenuItem onSelect={() => setDialogOpen(true)}>
@@ -165,7 +170,7 @@ function MediaUrlDialogContent({
   nodeType,
   setOpen,
 }: {
-  currentConfig: (typeof MEDIA_CONFIG)[string];
+  currentConfig: (typeof MEDIA_CONFIG)[MediaConfigKey];
   nodeType: string;
   setOpen: (value: boolean) => void;
 }) {

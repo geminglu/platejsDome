@@ -120,7 +120,7 @@ export const turnIntoItems = [
     label: "3 columns",
     value: "action_three_columns",
   },
-];
+] as const;
 
 export function TurnIntoToolbarButton(props: DropdownMenuProps) {
   const editor = useEditorRef();
